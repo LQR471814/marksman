@@ -8,7 +8,7 @@
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     </PropertyGroup>
     <Target Name="Version" BeforeTargets="BeforeBuild">
-        <Exec Command="git describe --tags --always --dirty" ConsoleToMSBuild="true" Condition="'$(VersionString)'==''">
+        <Exec Command="echo '2026-08-09'" ConsoleToMSBuild="true" Condition="'$(VersionString)'==''">
             <Output TaskParameter="ConsoleOutput" PropertyName="VersionString"/>
         </Exec>
         <PropertyGroup>
