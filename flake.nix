@@ -9,6 +9,24 @@
       };
     in
     {
+      packages.${system}.default = pkgs.buildDotnetModule {
+        pname = "marksman";
+        name = "marksman";
+        version = "2026-08-09";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "LQR471814";
+          repo = "marksman";
+          rev = "nix";
+          hash = "sha256-DbFX0Cv9VYgGdnAB9CaYlR91isk1+3/xPXDGbKq7WGU=";
+        };
+
+        dotnet-sdk = pkgs.dotnetCorePackages.sdk_9_0;
+        dotnet-runtime = pkgs.dotnetCorePackages.runtime_9_0;
+        nugetDeps = ./deps.json;
+
+        projectFile = "Marksman/Marksman.fsproj";
+      };
       devShells.${system}.default =
         let
           libs = with pkgs; [ ];
